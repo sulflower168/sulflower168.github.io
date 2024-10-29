@@ -7,6 +7,129 @@
     <meta name="description" content="ここに説明を記入">
 </head>
 <body>
-    
+    <div class="container">
+        <div id="header">
+            <!-- 後でレスポンシブに対応させます -->
+            <header>
+                <div class="wrap">
+                    <a href="#" class="header-logo">
+                        <img src="img/学習支援ツール_logo2.png" alt="Academic Support Tools">
+                    </a>
+                    <div id="header-navi" class="pc-header">
+                        <nav>
+                            <ul class="menu">
+                                <li>
+                                    <a href="#">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="#">推奨環境</a>
+                                </li>
+                                <li>
+                                    <a href="#">お問い合わせ</a>
+                                </li>
+                                <li>
+                                    <a href="#">不具合報告</a>
+                                </li>
+                            </ul>
+                            <ul class="menu-user">
+                                <li>
+                                    <a href="login.html">ログイン</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="contents">
+            <main>
+                <div class="lower-nav mypage">
+                    <!-- 後でレスポンシブに対応させます -->
+                    <nav class="pc-header">
+                        <ul>
+                            <li>
+                                <a href="#">マイページTOP</a>
+                            </li>
+                            <li>
+                                <a href="#">ダッシュボード</a>
+                            </li>
+                            <!-- 後で追加します -->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="breadcrumb">
+                    <ol>
+                        <li>
+                            <a href="#">ホーム</a>
+                        </li>
+                        <li>
+                            <span>ログイン</span>
+                        </li>
+                    </ol>
+                </div>
+                <div class="main">
+                    <h1 class="headingPrimary">
+                        <strong>ログイン</strong>
+                    </h1>
+                    <!-- 後でレスポンシブに対応させます -->
+                    <div>
+                        <div>
+                            <p>一部ツールの利用には会員登録が必要です。『<a href="#" class>新規会員登録はこちら（未実装）</a>』</p>
+                        </div>
+                        <form id="login-form">
+                            <div class="box-form-wrap">
+                                <div class="box-form">
+                                    <div class="input-head">
+                                        <span>ユーザーID</span>
+                                        <i class="required">必須</i>
+                                    </div>
+                                    <input id="username" name="username" type="text" class="input type3">
+                                </div>
+                                <div class="box-form">
+                                    <div class="input-head">
+                                        <span>パスワード</span>
+                                        <i class="required">必須</i>
+                                    </div>
+                                    <input type="password" id="password" name="password" type="text" class="input type3">
+                                </div>
+                            </div>
+                            <div class="ta-c">
+                                <button type="submit" name="login" class="button darkblue">ログイン</button>
+                            </div>
+                        </form>
+                        <div>
+                            <!-- 後で書きます -->
+                            <div class="frame-darkblue">
+                                <div>
+                                    <h2 class="headingThirdly">
+                                        <span>ログインできない方</span>
+                                    </h2>
+                                    <ul class="textList">
+                                        <li>
+                                            <span>ご入力いただいたパスワードが誤っている可能性があります。</span>
+                                        </li>
+                                        <li>
+                                            <span>ご入力いただいたユーザーIDが誤っている可能性があります。ユーザーIDが不明な場合は、大変お手数をおかけいたしますが、<a href="#">お問い合わせフォーム（未実装）</a>、または、「サイト管理者」に直接ご確認ください。</span>
+                                        </li>
+                                        <li>
+                                            <span>パスワードは初期状態で学籍番号（英字は小文字）が割り振られています。</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer>
+            <div class="wrap">
+                <!-- 拡張時のため一応 -->
+            </div>
+            <p class="copyright">©2024 Academic-Support-Tools（学習支援ツール）</p>
+        </footer>
+    <div id="login-result"></div>
+
+    <script src="js\script.js"></script>
 </body>
 </html>
