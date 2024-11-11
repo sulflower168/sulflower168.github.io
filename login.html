@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学習支援ツール | 学習支援ツール</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ログイン | 学習支援ツール</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +14,7 @@
             <header>
                 <div class="wrap">
                     <a href="./index.html" class="header-logo">
-                        <img src="img/学習支援ツール_logo2.png" alt="Academic Support Tools">
+                        <img src="./img/学習支援ツール_logo2.png" alt="Academic Support Tools">
                     </a>
                     <div id="header-navi" class="pc-header">
                         <nav>
@@ -84,53 +85,63 @@
                             <a href="./index.html">ホーム</a>
                         </li>
                         <li>
-                            <span>学習支援ツール</span>
+                            <span>ログイン</span>
                         </li>
                     </ol>
                 </div>
-                <div class="main-contents">
-                    <h2 class="headline-l">学習支援ツール</h2>
+                <div class="main">
+                    <h1 class="headingPrimary">
+                        <strong>ログイン</strong>
+                    </h1>
                     <!-- 後でレスポンシブに対応させます -->
-                    <div class="service-top-block">
-                        <div class="wrap">
-                            <ul class="service-top-list">
-                                <li>
-                                    <a href="tools/itpass.html">
-                                        <div class="image">
-                                            <img src="img\ITパスポート_見出し.png" alt="1">
-                                        </div>
-                                        <h3 class="title">ITパスポート試験</h3>
-                                        <p class="message">ITパスポート試験の勉強をもっと手軽に。音声を通して、友人と問題を出し合うように試験勉強ができるツールです。</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="img\基本情報技術者試験_見出し.png" alt="2">
-                                        </div>
-                                        <h3 class="title">基本情報技術者試験</h3>
-                                        <p class="message">-実装予定-</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="img\応用情報技術者試験_見出し.png" alt="3">
-                                        </div>
-                                        <h3 class="title">応用情報技術者試験</h3>
-                                        <p class="message">-実装予定-</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="img\愚痴を聴く対話システム_見出し.png" alt="4">
-                                        </div>
-                                        <h3 class="title">愚痴を聴く対話システム </h3>
-                                        <p class="message">-実装予定-</p>
-                                    </a>
-                                </li>
-                            </ul>
+                    <div>
+                        <div>
+                            <p>一部ツールの利用には会員登録が必要です。『<a href="#" class>新規会員登録はこちら（未実装）</a>』</p>
+                        </div>
+                        <form id="login-form">
+                            <div class="box-form-wrap">
+                                <div class="box-form">
+                                    <div class="input-head">
+                                        <span>ユーザーID</span>
+                                        <i class="required">必須</i>
+                                    </div>
+                                    <input id="username" name="username" type="text" class="input type3">
+                                </div>
+                                <div class="box-form">
+                                    <div class="input-head">
+                                        <span>パスワード</span>
+                                        <i class="required">必須</i>
+                                    </div>
+                                    <input type="password" id="password" name="password" type="text" class="input type3">
+                                </div>
+                            </div>
+                            <div class="ta-c">
+                                <button type="submit" name="login" class="button darkblue">ログイン</button>
+                            </div>
+                        </form>
+                        <div>
+                            <!-- 後で書きます -->
+                            <div class="frame-darkblue">
+                                <div>
+                                    <h2 class="headingThirdly">
+                                        <span>ログインできない方</span>
+                                    </h2>
+                                    <ul class="textList">
+                                        <li>
+                                            <span>ご入力いただいたパスワードが誤っている可能性があります。</span>
+                                        </li>
+                                        <li>
+                                            <span>ご入力いただいたユーザーIDが誤っている可能性があります。<br>ユーザーIDが不明な場合は、大変お手数をおかけいたしますが《<a href="#">お問い合わせフォーム（未実装）</a>》または、「サイト管理者」に直接ご確認ください。</span>
+                                        </li>
+                                        <li>
+                                            <span>パスワードは初期状態で英数字の組み合わせ（英字は小文字）が割り振られています。</span>
+                                        </li>
+                                        <li>
+                                            <span>現在、この機能は"試験段階"です。ご利用できません。</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -142,10 +153,10 @@
                     <li class="footer-logos">
                         <div>
                             <a href="#">
-                                <img src="img/学習支援ツール_logo3.png" alt="学習支援ツール">
+                                <img src="./img/学習支援ツール_logo3.png" alt="学習支援ツール">
                                 <div class="footer-logo-powerd">
                                     powerd by
-                                    <img src="img/AS-Tools_logo.png" alt="AS-Tools">
+                                    <img src="./img/AS-Tools_logo.png" alt="AS-Tools">
                                 </div>
                             </a>
                         </div>
@@ -251,6 +262,6 @@
         </footer>
     <div id="login-result"></div>
 
-    <script src="js\script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
