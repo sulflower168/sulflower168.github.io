@@ -5,7 +5,7 @@
     <title>学習支援ツール（Academic Support Tools）</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ここに説明を記入">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +13,7 @@
             <!-- 後でレスポンシブに対応させます -->
             <header>
                 <div class="wrap">
-                    <a href="#" class="header-logo">
+                    <a href="./index.html" class="header-logo">
                         <img src="img/学習支援ツール_logo2.png" alt="Academic Support Tools">
                     </a>
                     <div id="header-navi" class="pc-header">
@@ -23,18 +23,27 @@
                                     <a href="#">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="#">推奨環境</a>
+                                    <a href="./abouts.html">利用規約</a>
+                                </li>
+                                <li>
+                                    <a href="./abouts.html">推奨環境</a>
+                                </li>
+                                <li>
+                                    <a href="#">不具合報告</a>
                                 </li>
                                 <li>
                                     <a href="#">お問い合わせ</a>
                                 </li>
                                 <li>
-                                    <a href="#">不具合報告</a>
+                                    <a href="#">お知らせ・雑記</a>
+                                </li>
+                                <li>
+                                    <a href="./abouts.html">このサイトについて</a>
                                 </li>
                             </ul>
                             <ul class="menu-user">
                                 <li>
-                                    <a href="login.html">ログイン</a>
+                                    <a href="./login.html">ログイン</a>
                                 </li>
                             </ul>
                         </nav>
@@ -49,83 +58,257 @@
                     <nav class="pc-header">
                         <ul>
                             <li>
-                                <a href="#">マイページTOP</a>
+                                <a href="./index.html">ホーム</a>
                             </li>
                             <li>
-                                <a href="#">ダッシュボード</a>
+                                <a href="./login.html">マイページTOP</a>
+                            </li>
+                            <li>
+                                <a href="./dashboard.html">ダッシュボード</a>
+                            </li>
+                            <li>
+                                <a href="./tools.html">学習支援ツール</a>
+                            </li>
+                            <li>
+                                <a href="./supporters.html">サポーターの皆様</a>
+                            </li>
+                            <li>
+                                <a href="#">広告掲載について</a>
                             </li>
                             <!-- 後で追加します -->
                         </ul>
                     </nav>
                 </div>
-                <div class="breadcrumb">
-                    <ol>
-                        <li>
-                            <a href="#">ホーム</a>
-                        </li>
-                        <li>
-                            <span>ログイン</span>
-                        </li>
-                    </ol>
-                </div>
-                <div class="main">
-                    <h1 class="headingPrimary">
-                        <strong>ログイン</strong>
-                    </h1>
-                    <!-- 後でレスポンシブに対応させます -->
-                    <div>
-                        <div>
-                            <p>一部ツールの利用には会員登録が必要です。『<a href="#" class>新規会員登録はこちら（未実装）</a>』</p>
-                        </div>
-                        <form id="login-form">
-                            <div class="box-form-wrap">
-                                <div class="box-form">
-                                    <div class="input-head">
-                                        <span>ユーザーID</span>
-                                        <i class="required">必須</i>
-                                    </div>
-                                    <input id="username" name="username" type="text" class="input type3">
-                                </div>
-                                <div class="box-form">
-                                    <div class="input-head">
-                                        <span>パスワード</span>
-                                        <i class="required">必須</i>
-                                    </div>
-                                    <input type="password" id="password" name="password" type="text" class="input type3">
+                <section>
+                    <div class="wrap">
+                        <h2 class="headline-top">学習支援ツールとは？</h2>
+                        <!-- 後でレスポンシブに対応させます -->
+                        <div class="figure-top">
+                            <div class="figure">
+                                <div class="ta-c">
+                                    <img src="img\学習支援ツールとは_見出し.png" alt="学習支援ツールとは？">
                                 </div>
                             </div>
-                            <div class="ta-c">
-                                <button type="submit" name="login" class="button darkblue">ログイン</button>
-                            </div>
-                        </form>
-                        <div>
-                            <!-- 後で書きます -->
-                            <div class="frame-darkblue">
-                                <div>
-                                    <h2 class="headingThirdly">
-                                        <span>ログインできない方</span>
-                                    </h2>
-                                    <ul class="textList">
-                                        <li>
-                                            <span>ご入力いただいたパスワードが誤っている可能性があります。</span>
-                                        </li>
-                                        <li>
-                                            <span>ご入力いただいたユーザーIDが誤っている可能性があります。ユーザーIDが不明な場合は、大変お手数をおかけいたしますが、<a href="#">お問い合わせフォーム（未実装）</a>、または、「サイト管理者」に直接ご確認ください。</span>
-                                        </li>
-                                        <li>
-                                            <span>パスワードは初期状態で学籍番号（英字は小文字）が割り振られています。</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="figcaption">
+                                <p>学習支援ツールは、学生の様々な《学習・資格勉強》をサポートするために作られたサイトです。</p>
+                                <p>学習支援ツールでは資格試験（ITパスポート、基本情報技術者試験、応用情報技術者試験）に必要な機能の提供及び関連情報の紹介をメインに運営しています。</p>
+                                <p>また認知機能実験のため、《「愚痴」を聴く対話システム 》が公開されています。</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="button-area button-area-figure">
+                        <a href="./abouts.html" class="button">このサイトについて</a>
+                    </div>
+                </section>
+                <section>
+                    <div class="wrap">
+                        <h2 class="headline">学習支援ツール</h2>
+                        <!-- 後でレスポンシブに対応させます -->
+                        <ul class="service-list">
+                            <li>
+                                <a href="./tools/itpass.html">
+                                    <div class="image">
+                                        <img src="img\ITパスポート_見出し.png" alt="1">
+                                    </div>
+                                    <h3 class="title">ITパスポート試験</h3>
+                                    <p class="message">ITパスポート試験の勉強をもっと手軽に。音声を通して、友人と問題を出し合うように試験勉強ができるツールです。</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="img\基本情報技術者試験_見出し.png" alt="2">
+                                    </div>
+                                    <h3 class="title">基本情報技術者試験</h3>
+                                    <p class="message">-実装予定-</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="img\応用情報技術者試験_見出し.png" alt="3">
+                                    </div>
+                                    <h3 class="title">応用情報技術者試験</h3>
+                                    <p class="message">-実装予定-</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="img\愚痴を聴く対話システム_見出し.png" alt="4">
+                                    </div>
+                                    <h3 class="title">愚痴を聴く対話システム </h3>
+                                    <p class="message">-実装予定-</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="button-area middle">
+                            <a href="./tools.html" class="button">学習支援ツールをさらに表示</a>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="headline">お知らせ・雑記</h2>
+                    <div id="top-attention-area">
+                        <div class="wrap">
+                            <div>
+                                <ul class="top-alert-list">
+                                    <li>
+                                        <p class="title">
+                                            <span class="clr-darkblue">【プレリリース】学習支援ツール≪Pre-Alpha≫を公開しました</span>
+                                        </p>
+                                        <!-- 後でレスポンシブに対応させます -->
+                                        <a href="#" target="_self" class="arrow arrow-darkblue">
+                                            詳しくはこちら
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <p class="title">
+                                            <span class="clr-black">【広告掲載】〈学園アイドルマスター（学マス）〉応援広告の掲載を開始しました</span>
+                                        </p>
+                                        <!-- 後でレスポンシブに対応させます -->
+                                        <a href="#" target="_self" class="arrow arrow-darkblue">
+                                            詳しくはこちら
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <p class="title">
+                                            <span class="clr-darkblue">【実装開始】学習支援ツールの実装を開始しました</span>
+                                        </p>
+                                        <!-- 後でレスポンシブに対応させます -->
+                                        <a href="#" target="_self" class="arrow arrow-darkblue">
+                                            詳しくはこちら
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-area">
+                        <a href="#" class="button">お知らせ・雑記をさらに表示</a>
+                    </div>
+                </section>
+                <section>
+                    <div class="wrap">
+                        <h2 class="headline">メディア掲載</h2>
+                        <!-- 後でレスポンシブに対応させます -->
+                        <div class="media-announce">
+                            まだメディア掲載情報がありません。
+                        </div>
+                    </div>
+                </section>
             </main>
         </div>
         <footer>
             <div class="wrap">
-                <!-- 拡張時のため一応 -->
+                <ul class="footer-corporate-link">
+                    <li class="footer-logos">
+                        <div>
+                            <a href="#">
+                                <img src="img/学習支援ツール_logo3.png" alt="学習支援ツール">
+                                <div class="footer-logo-powerd">
+                                    powerd by
+                                    <img src="img/AS-Tools_logo.png" alt="AS-Tools">
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <!-- 拡張時のため一応 -->
+                        </div>
+                    </li>
+                    <li class="site-maps">
+                        <a href="#" class="title">サイトマップ</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="arrow">
+                                    ホーム
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    学習支援ツール
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    FAQ（使い方ガイド）
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    サポーターの皆様
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="title blank">
+                            運営情報
+                            <i></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="#" class="arrow">
+                                    このサイトについて
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    利用規約
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    プライバシーポリシー
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    不具合報告
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    お問い合わせ
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sponsored">
+                        <a href="#" class="title blank">
+                            Sponsored AD
+                            <i></i>
+                        </a>
+                        <div class="sponsored-ad">
+                            <div class="sponsored-ad-container">
+                                <div class="sponsored-ad-detail">
+                                    <a class="sponsored-ad-detail-item" href="https://gakuen.idolmaster-official.jp/">
+                                        <div class="sponsored-ad-detail-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/icon_app.png" alt="icon_app">
+                                        </div>
+                                    </a>
+                                    <a class="sponsored-ad-detail-item" href="https://gakuen-label.idolmaster-official.jp/">
+                                        <div class="sponsored-ad-detail-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/logo_color_w.png" alt="logo_color_w">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="sponsored-ad-store">
+                                    <a class="sponsored-ad-store-item" href="https://apps.apple.com/jp/app/id6446659989?mt=8">
+                                        <div class="sponsored-ad-store-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/btn_store_apple_open.png" alt="apple">
+                                        </div>
+                                    </a>
+                                    <a class="sponsored-ad-store-item" href="https://play.google.com/store/apps/details?id=com.bandainamcoent.idolmaster_gakuen">
+                                        <div class="sponsored-ad-store-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/btn_store_google_open.png" alt="google">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <p class="copyright">©2024 Academic-Support-Tools（学習支援ツール）</p>
         </footer>
