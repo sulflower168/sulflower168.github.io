@@ -1,0 +1,188 @@
+/* login.html */
+/* ログイン */
+.main {
+    max-width: 1240px;
+    margin: 0 auto;
+    line-height: 1.714;
+    padding: 0 20px 100px;
+}
+
+.headingPrimary {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin: 55px 0;
+}
+
+.headingPrimary strong {
+    font-weight: 400;
+}
+
+.main p>a {
+    text-decoration: underline;
+}
+
+.main p {
+    position: relative;
+    padding-left: 16px;
+    padding-right: 2em;
+    display: inline-block;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.main>div>div>p:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .48em;
+    border: 5px solid transparent;
+    border-left: 7px solid #104b73;
+}
+
+/* box-form-wrap */
+.box-form-wrap {
+    border-top: 1px solid #ddd;
+    padding-top: 35px;
+}
+
+.box-form-wrap .box-form {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 27px;
+    margin-bottom: 27px;
+}
+
+.box-form-wrap .box-form:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.input-head {
+    display: flex;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.input-head .required {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 6px 10px 2px;
+    line-height: 1em;
+    background: #e90000;
+    color: #fff;
+    margin-top: -1px;
+}
+
+.input.type3 {
+    max-width: 588px;
+}
+
+.input {
+    width: 100%;
+    height: 45px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    outline: 0;
+    padding: 0.75rem 1rem;
+}
+
+.input:focus {
+    border-width: 0.2em;
+    border-color: #104b73;
+}
+
+.input.error {
+    border-width: 0.2em;
+    border-color: #e90000;
+    transition:0.05s;
+}
+
+.main p {
+    margin-bottom: 30px;
+}
+
+/* ログインボタン */
+.main .ta-c, .main .ta-c form {
+    display: flex;
+    justify-content: center;
+}
+
+.main .ta-c {
+    width: 100%;
+    margin: 50px 0;
+}
+
+.main .button.darkblue {
+    background: #104b73;
+    border: 1px solid #104b73;
+    color: #fff;
+}
+
+.main .button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 48px;
+    line-height: 22px;
+    height: auto;
+    max-width: 340px;
+    padding: 9.5px 30px;
+    border-radius: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition-duration: .5s;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+    border: 1px solid #104b73;
+    text-decoration: none;
+}
+
+/* ログインできない方 */
+.main .frame-darkblue {
+    position: relative;
+    padding: 50px 30px;
+    z-index: 2;
+    background: #eafdff;
+    margin-bottom: 50px;
+}
+
+.main .headingThirdly {
+    text-align: left;
+    color: #313131;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.main .textList li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: .5em;
+}
+
+.main .textList li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 8px;
+    height: 8px;
+    background: #104b73;
+    border-radius: 50%;
+}
+
+.main .textList li a {
+    text-decoration: underline;
+}
