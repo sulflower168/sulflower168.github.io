@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>第１回テスト | 学習支援ツール</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../experiment_style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="contents">
+            <main>
+                <div class="primary_header">
+                    <ol>
+                        <li>
+                            <a href="../../index.html">ホーム</a>
+                        </li>
+                        <li>
+                            <a href="../../tools.html">学習支援ツール</a>
+                        </li>
+                        <li>
+                            <a href="../experiment_testmode.html">学習定着実験《 テストモード 》</a>
+                        </li>
+                        <li>
+                            <span>プレテスト</span>
+                        </li>
+                    </ol>
+                    <ul class="menu-user">
+                        <li>
+                            <a href="../experiment_login.html" id="user-login"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="head1">
+                    <div class="head2">
+                        <div class="head3">
+                            <div class="pie-chart-2">1/10</div>
+                            <div>中断</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-contents">
+                    <div class="test-wrap test">
+                        <div>
+                            <section class="section box" id="quiz-container">
+                                <div class="question-box">
+                                    <div class="question-box-info">
+                                        <p id="question"></p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="question-option" style="min-height: 141px;">
+                                    <div class="question-options" id="choices">
+                                        
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="result" id="result" style="display:none;">
+                                <h2>試験結果</h2>
+                                <p id="score"></p>
+                                <h3>選択履歴</h3>
+                                <ul id="history"></ul>
+                                <button class="save-results" id="save-results">保存する</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer1">
+            <div class="footer2">
+                <div class="button-area" id="button-container">
+                    <button class="button" onclick="prevQuestion()">前の問題へ</button>
+                    <button class="button" onclick="nextQuestion()">次の問題へ</button>
+                </div>
+                <p class="copyright">©2024 Academic-Support-Tools（学習支援ツール）</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhfFiNXhqB5Lko49xQD6SonIJf_f5Wh0Q",
+            authDomain: "academic-experiments-project.firebaseapp.com",
+            projectId: "academic-experiments-project",
+            storageBucket: "academic-experiments-project.firebasestorage.app",
+            messagingSenderId: "479824505322",
+            appId: "1:479824505322:web:c42a6734dcac994697aa93",
+            measurementId: "G-9EE5NBZZ4D"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let userScore = 0;
+        const history = [];
+        const questions = [
+            { question: "1. ある商品の販売量と気温の関係が一次式で近似できるとき，予測した気温から商品の販売量を推定する手法として，適切なものはどれか。", choices: ["回帰分析", "線形計画法", "デルファイ法", "パレート法"], correct: 0 },
+            { question: "2. 必要な時期に必要な量の原材料や部品を調達することによって，工程間の在庫をできるだけもたないようにする生産方式はどれか。", choices: ["BPO", "CIM", "JIT", "OEM"], correct: 2 },
+            { question: "3. あるソフトウェアは，定額の料金や一定の期間での利用ができる形態で提供されている。この利用形態を表す用語として，適切なものはどれか。", choices: ["アクティベーション", "アドウェア", "サブスクリプション", "ボリュームライセンス"], correct: 2 },
+            { question: "4. インターネットを介して個人や企業が保有する住宅などの遊休資産の貸出しを仲介するサービスや仕組みを表す用語として，最も適切なものはどれか。", choices: ["シェアードサービス", "シェアウェア", "シェアリングエコノミー", "ワークシェアリング"], correct: 2 },
+            { question: "5. ある企業が，顧客を引き付ける優れたUX(User Experience)やビジネスモデルをデジタル技術によって創出し，業界における従来のサービスを駆逐してしまうことによって，その業界の既存の構造が破壊されるような現象を表す用語として，最も適切なものはどれか。", choices: ["デジタルサイネージ", "デジタルディスラプション", "デジタルディバイド", "デジタルトランスフォーメーション"], correct: 1 },
+            { question: "6. 不正競争防止法で規定されている限定提供データに関する記述として，最も適切なものはどれか。", choices: ["特定の第三者に対し，1回に限定して提供する前提で保管されている技術上又は営業上の情報は限定提供データである。", "特定の第三者に提供する情報として電磁的方法によって相当量蓄積され管理されている技術上又は営業上の情報(秘密として管理されているものを除く)は限定提供データである。", "特定の第三者に提供するために，金庫などで物理的に管理されている技術上又は営業上の情報は限定提供データである。", "不正競争防止法に定めのある営業秘密は限定提供データである。"], correct: 1 },
+            { question: "7. AIに関するガイドラインの一つである'人間中心のAI社会原則'に定められている七つの'AI社会原則'のうち，'イノベーションの原則'に関する記述として，最も適切なものはどれか。", choices: ["AIの発展によって人も併せて進化するように，国際化や多様化を推進し，大学，研究機関，企業など，官民における連携と，柔軟な人材の移動を促進する。", "AIの利用がもたらす結果については，問題の特性に応じて，AIの開発，提供，利用に携わった関係者が分担して責任を負う。", "サービスの提供者は，AIを利用している事実やデータの取得方法や使用方法，結果の適切性について，利用者に対する適切な説明を行う。", "情報弱者を生み出さないために，幼児教育や初等中等教育において，AI活用や情報リテラシーに関する教育を行う。"], correct: 0 },
+            { question: "8. RPAが適用できる業務として，最も適切なものはどれか。", choices: ["ゲームソフトのベンダーが，ゲームソフトのプログラムを自動で改善する業務", "従業員の交通費精算で，交通機関利用区間情報と領収書データから精算伝票を作成する業務", "食品加工工場で，産業用ロボットを用いて冷凍食品を自動で製造する業務", "通信販売業で，膨大な顧客の購買データから顧客の購買行動に関する新たな法則を見つける業務"], correct: 1 },
+            { question: "9. 式は定期発注方式で原料の発注量を求める計算式である。a～cに入れる字句の適切な組合せはどれか。", choices: ["1番", "2番", "3番", "4番"], correct: 2 },
+            { question: "10. 個人情報保護法では，あらかじめ本人の同意を得ていなくても個人データの提供が許される行為を規定している。この行為に該当するものだけを，全て挙げたものはどれか。", choices: ["a", "aとc", "bとc", "cのみ"], correct: 1 }
+        ];
+
+        let currentQuestion = 0;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                console.log(`ログイン中: ${user.email}`);
+            } else {
+                alert("ログインが必要です。");
+                window.location.href = "../experiment_login.html";
+            }
+        });
+
+        let userAnswers = new Array(questions.length).fill(null); // 回答の保存用
+
+        function displayQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResult();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            document.getElementById("question").textContent = question.question;
+
+            // 選択肢の生成
+            const choicesDiv = document.getElementById("choices");
+            choicesDiv.innerHTML = ""; // 既存の選択肢をクリア
+            question.choices.forEach((choice, index) => {
+                const choiceWrapper = document.createElement("label");
+                const radioButton = document.createElement("input");
+                radioButton.type = "radio";
+                radioButton.name = "answer";
+                radioButton.id = `choice${index}`;
+                radioButton.value = index;
+
+                // 保存された回答を復元
+                if (userAnswers[currentQuestion] === index) {
+                    radioButton.checked = true;
+                }
+
+                radioButton.addEventListener("change", () => {
+                    userAnswers[currentQuestion] = index; // 選択を保存
+
+                    // 履歴に記録を追加または更新
+                    history[currentQuestion] = {
+                        question: questions[currentQuestion].question,
+                        selectedChoice: questions[currentQuestion].choices[index],
+                        correctChoice: questions[currentQuestion].choices[questions[currentQuestion].correct],
+                        isCorrect: index === questions[currentQuestion].correct
+                    };
+                });
+
+
+                const span = document.createElement("span");
+                span.htmlFor = `choice${index}`;
+                span.textContent = choice;
+
+                choiceWrapper.appendChild(radioButton);
+                choiceWrapper.appendChild(span);
+                choicesDiv.appendChild(choiceWrapper);
+            });
+
+            // 「前の問題へ」ボタンの表示制御
+            const prevButton = document.querySelector("button[onclick='prevQuestion()']");
+            prevButton.style.display = currentQuestion === 0 ? "none" : "inline-block";
+
+            // 「次の問題へ」ボタンのテキスト変更
+            const nextButton = document.querySelector("button[onclick='nextQuestion()']");
+            nextButton.textContent = currentQuestion === questions.length - 1 ? "提出" : "次の問題へ";
+        }
+
+        function nextQuestion() {
+            if (currentQuestion === questions.length - 1) {
+                showResult();
+                return;
+            }
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        // グローバルスコープに登録
+        window.nextQuestion = nextQuestion;
+        window.prevQuestion = prevQuestion;
+
+        function prevQuestion() {
+            currentQuestion--;
+            displayQuestion();
+        }
+
+        function showResult() {
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("button-container").style.display = "none";
+            document.getElementById("result").style.display = "block";
+
+            // スコア計算
+            userScore = userAnswers.reduce((score, answer, index) => {
+                return score + (answer === questions[index].correct ? 1 : 0);
+            }, 0);
+
+            document.getElementById("score").textContent = `あなたのスコア: ${userScore} / ${questions.length}`;
+
+            const historyList = document.getElementById("history");
+            historyList.innerHTML = ""; // リストをクリア
+            history.forEach((entry, index) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `問題 ${index + 1}: 選んだ選択肢 "${entry.selectedChoice}" - ${
+                    entry.isCorrect ? "正解" : "不正解"
+                }`;
+                historyList.appendChild(listItem);
+            });
+
+            document.getElementById("save-results").addEventListener("click", saveResultsToFirestore);
+        }
+
+        async function saveResultsToFirestore() {
+            if (!currentUser) {
+                alert("ログイン情報がありません。再度ログインしてください。");
+                return;
+            }
+
+            try {
+                await setDoc(doc(db, "2test_results", currentUser.uid), {
+                    email: currentUser.email,
+                    score: userScore,
+                    history: history,
+                    timestamp: new Date().toISOString(),
+                });
+                alert("結果をファイルサーバーに保存しました！");
+            } catch (error) {
+                console.error("Firestore保存エラー:", error);
+                alert("Firestore保存エラー: " + error.message);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            displayQuestion();
+        });
+    </script>
+</body>
+</html>

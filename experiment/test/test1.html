@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>第１回テスト | 学習支援ツール</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../experiment_style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="contents">
+            <main>
+                <div class="primary_header">
+                    <ol>
+                        <li>
+                            <a href="../../index.html">ホーム</a>
+                        </li>
+                        <li>
+                            <a href="../../tools.html">学習支援ツール</a>
+                        </li>
+                        <li>
+                            <a href="../experiment_testmode.html">学習定着実験《 テストモード 》</a>
+                        </li>
+                        <li>
+                            <span>プレテスト</span>
+                        </li>
+                    </ol>
+                    <ul class="menu-user">
+                        <li>
+                            <a href="../experiment_login.html" id="user-login"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="head1">
+                    <div class="head2">
+                        <div class="head3">
+                            <div class="pie-chart-2">1/10</div>
+                            <div>中断</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-contents">
+                    <div class="test-wrap test">
+                        <div>
+                            <section class="section box" id="quiz-container">
+                                <div class="question-box">
+                                    <div class="question-box-info">
+                                        <p id="question"></p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div id="question-image-container" style="text-align: center; margin: 10px 0;">
+                                        <img id="question-image" src="" alt="問題画像" style="max-width: 100%; display: none; margin: 0 auto ;">
+                                    </div>                                    
+                                </div>
+                                <div class="question-option" style="min-height: 141px;">
+                                    <div class="question-options" id="choices">
+                                        
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="result" id="result" style="display:none;">
+                                <h2>試験結果</h2>
+                                <p id="score"></p>
+                                <h3>選択履歴</h3>
+                                <ul id="history"></ul>
+                                <button class="save-results" id="save-results">保存する</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer1">
+            <div class="footer2">
+                <div class="button-area" id="button-container">
+                    <button class="button" onclick="prevQuestion()">前の問題へ</button>
+                    <button class="button" onclick="nextQuestion()">次の問題へ</button>
+                </div>
+                <p class="copyright">©2024 Academic-Support-Tools（学習支援ツール）</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhfFiNXhqB5Lko49xQD6SonIJf_f5Wh0Q",
+            authDomain: "academic-experiments-project.firebaseapp.com",
+            projectId: "academic-experiments-project",
+            storageBucket: "academic-experiments-project.firebasestorage.app",
+            messagingSenderId: "479824505322",
+            appId: "1:479824505322:web:c42a6734dcac994697aa93",
+            measurementId: "G-9EE5NBZZ4D"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let userScore = 0;
+        const history = [];
+        const questions = [
+            { question: "1. 情報システムに不正に侵入し，サービスを停止させて社会的混乱を生じさせるような行為に対して，国全体で体系的に防御施策を講じるための基本理念を定め，国の責務などを明らかにした法律はどれか。", choices: ["公益通報者保護法", "サイバーセキュリティ基本法", "不正アクセス禁止法", "プロバイダ責任制限法"], correct: 1, image: null },
+            { question: "2. 未来のある時点に目標を設定し，そこを起点に現在を振り返り，目標実現のために現在すべきことを考える方法を表す用語として，最も適切なものはどれか。", choices: ["PoC(Proof of Concept)", "PoV(Proof of Value)", "バックキャスティング", "フォアキャスティング"], correct: 2, image: null },
+            { question: "3. 従来の金融情報システムは堅ろう性が高い一方，柔軟性に欠け，モバイル技術などの情報革新に追従したサービスの迅速な提供が難しかった。これを踏まえて，インターネット関連技術の取込みやそれらを活用するベンチャー企業と組むなどして，新たな価値や革新的なサービスを提供していく潮流を表す用語として，最も適切なものはどれか。", choices: ["オムニチャネル", "フィンテック", "ブロックチェーン", "ワントゥワンマーケティング"], correct: 1, image: null },
+            { question: "4. 技術戦略の策定や技術開発の推進といった技術経営に直接の責任をもつ役職はどれか。", choices: ["CEO", "CFO", "COO", "CTO"], correct: 3, image: null },
+            { question: "5. 品質に関する組織やプロセスの運営管理を標準化し，マネジメントの質や効率の向上を目的とした方策として，適切なものはどれか。", choices: ["ISMSの導入", "ISO 9001の導入", "ITILの導入", "プライバシーマークの取得"], correct: 1, image: null },
+            { question: "6. ベンチャーキャピタルに関する記述として，最も適切なものはどれか。", choices: ["新しい技術の獲得や，規模の経済性の追求などを目的に，他の企業と共同出資会社を設立する手法", "株式売却による利益獲得などを目的に，新しい製品やサービスを武器に市場に参入しようとする企業に対して出資などを行う企業", "新サービスや技術革新などの創出を目的に，国や学術機関，他の企業など外部の組織と共創関係を結び，積極的に技術や資源を交換し，自社に取り込む手法", "特定された課題の解決を目的に，一定の期間を定めて企業内に立ち上げられ，構成員を関連部門から招集し，目的が達成された時点で解散する組織"], correct: 1, image: null },
+            { question: "7. システム開発の上流工程において，業務プロセスのモデリングを行う目的として，最も適切なものはどれか。", choices: ["業務プロセスで取り扱う大量のデータを，統計的手法やAI手法などを用いて分析し，データ間の相関関係や隠れたパターンなどを見いだすため", "業務プロセスを可視化することによって，適切なシステム設計のベースとなる情報を整備し，関係者間で解釈を共有できるようにするため", "個々の従業員がもっている業務に関する知識・経験やノウハウを社内全体で共有し，創造的なアイディアを生み出すため", "プロジェクトに必要な要員を調達し，チームとして組織化して，プロジェクトの目的の達成に向けて一致団結させるため"], correct: 1, image: null },
+            { question: "8. 企業の戦略立案やマーケティングなどで使用されるフェルミ推定に関する記述として，最も適切なものはどれか。", choices: ["正確に算出することが極めて難しい数量に対して，把握している情報と論理的な思考プロセスによって概数を求める手法である。", "特定の集団と活動を共にしたり，人々の動きを観察したりすることによって，慣習や嗜好，地域や組織を取り巻く文化を類推する手法である。", "入力データと出力データから，その因果関係を統計的に推定する手法である。", "有識者のグループに繰り返し同一のアンケート調査とその結果のフィードバックを行うことによって，ある分野の将来予測に関する総意を得る手法である。"], correct: 0, image: null },
+            { question: "9. 表はA社の期末の損益計算書から抜粋した資料である。当期純利益が800百万円であるとき，販売費及び一般管理費は何百万円か。", choices: ["850", "900", "1,000", "1,200"], correct: 2, image: "../img/08.png"},
+            { question: "10. A社はRPAソフトウェアを初めて導入するに当たり，計画策定フェーズ，先行導入フェーズ，本格導入フェーズの3段階で進めようと考えている。次のうち，計画策定フェーズで実施する作業として，適切なものだけを全て挙げたものはどれか。", choices: ["aのみ", "aとc", "bのみ", "bとc"], correct: 0, image: "../img/23.png" }
+        ];
+
+        let currentQuestion = 0;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                console.log(`ログイン中: ${user.email}`);
+            } else {
+                alert("ログインが必要です。");
+                window.location.href = "../experiment_login.html";
+            }
+        });
+
+        let userAnswers = new Array(questions.length).fill(null); // 回答の保存用
+
+        function displayQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResult();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            document.getElementById("question").textContent = question.question;
+
+            // 画像の表示/非表示
+            const questionImageContainer = document.getElementById("question-image-container");
+            const questionImage = document.getElementById("question-image");
+            if (question.image) {
+                questionImage.src = question.image;
+                questionImage.style.display = "block"; // 画像を表示
+            } else {
+                questionImage.style.display = "none"; // 画像を非表示
+            }
+
+            // 選択肢の生成
+            const choicesDiv = document.getElementById("choices");
+            choicesDiv.innerHTML = ""; // 既存の選択肢をクリア
+            question.choices.forEach((choice, index) => {
+                const choiceWrapper = document.createElement("label");
+                const radioButton = document.createElement("input");
+                radioButton.type = "radio";
+                radioButton.name = "answer";
+                radioButton.id = `choice${index}`;
+                radioButton.value = index;
+
+                if (userAnswers[currentQuestion] === index) {
+                    radioButton.checked = true;
+                }
+
+                radioButton.addEventListener("change", () => {
+                    userAnswers[currentQuestion] = index;
+                    history[currentQuestion] = {
+                        question: questions[currentQuestion].question,
+                        selectedChoice: questions[currentQuestion].choices[index],
+                        correctChoice: questions[currentQuestion].choices[questions[currentQuestion].correct],
+                        isCorrect: index === questions[currentQuestion].correct
+                    };
+                });
+
+                const span = document.createElement("span");
+                span.htmlFor = `choice${index}`;
+                span.textContent = choice;
+
+                choiceWrapper.appendChild(radioButton);
+                choiceWrapper.appendChild(span);
+                choicesDiv.appendChild(choiceWrapper);
+            });
+
+            const prevButton = document.querySelector("button[onclick='prevQuestion()']");
+            prevButton.style.display = currentQuestion === 0 ? "none" : "inline-block";
+
+            const nextButton = document.querySelector("button[onclick='nextQuestion()']");
+            nextButton.textContent = currentQuestion === questions.length - 1 ? "提出" : "次の問題へ";
+        }
+
+        function nextQuestion() {
+            if (currentQuestion === questions.length - 1) {
+                showResult();
+                return;
+            }
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        // グローバルスコープに登録
+        window.nextQuestion = nextQuestion;
+        window.prevQuestion = prevQuestion;
+
+        function prevQuestion() {
+            currentQuestion--;
+            displayQuestion();
+        }
+
+        function showResult() {
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("button-container").style.display = "none";
+            document.getElementById("result").style.display = "block";
+
+            // スコア計算
+            userScore = userAnswers.reduce((score, answer, index) => {
+                return score + (answer === questions[index].correct ? 1 : 0);
+            }, 0);
+
+            document.getElementById("score").textContent = `あなたのスコア: ${userScore} / ${questions.length}`;
+
+            const historyList = document.getElementById("history");
+            historyList.innerHTML = ""; // リストをクリア
+            history.forEach((entry, index) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `問題 ${index + 1}: 選んだ選択肢 "${entry.selectedChoice}" - ${
+                    entry.isCorrect ? "正解" : "不正解"
+                }`;
+                historyList.appendChild(listItem);
+            });
+
+            document.getElementById("save-results").addEventListener("click", saveResultsToFirestore);
+        }
+
+        async function saveResultsToFirestore() {
+            if (!currentUser) {
+                alert("ログイン情報がありません。再度ログインしてください。");
+                return;
+            }
+
+            try {
+                await setDoc(doc(db, "1test_results", currentUser.uid), {
+                    email: currentUser.email,
+                    score: userScore,
+                    history: history,
+                    timestamp: new Date().toISOString(),
+                });
+                alert("結果をファイルサーバーに保存しました！");
+            } catch (error) {
+                console.error("Firestore保存エラー:", error);
+                alert("Firestore保存エラー: " + error.message);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            displayQuestion();
+        });
+    </script>
+</body>
+</html>
