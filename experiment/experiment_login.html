@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン | 学習支援ツール</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <!-- 後でレスポンシブに対応させます -->
+            <header>
+                <div class="wrap">
+                    <a href="../index.html" class="header-logo">
+                        <img src="../img/学習支援ツール_logo3.png" alt="Academic Support Tools">
+                    </a>
+                    <div id="header-navi" class="pc-header">
+                        <nav>
+                            <ul class="menu">
+                                <li>
+                                    <a href="#">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="#">利用規約</a>
+                                </li>
+                                <li>
+                                    <a href="#">推奨環境</a>
+                                </li>
+                                <li>
+                                    <a href="#">不具合報告</a>
+                                </li>
+                                <li>
+                                    <a href="#">お問い合わせ</a>
+                                </li>
+                                <li>
+                                    <a href="#">お知らせ・雑記</a>
+                                </li>
+                                <li>
+                                    <a href="#">このサイトについて</a>
+                                </li>
+                            </ul>
+                            <ul class="menu-user">
+                                <li>
+                                    <a href="./experiment_login.html" id="user-login"></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="contents">
+            <main>
+                <div class="lower-nav mypage">
+                    <!-- 後でレスポンシブに対応させます -->
+                    <nav class="pc-header">
+                        <ul>
+                            <li>
+                                <a href="../index.html">ホーム</a>
+                            </li>
+                            <li>
+                                <a href="../experiment_login.html">マイページTOP</a>
+                            </li>
+                            <li>
+                                <a href="../dashboard.html">ダッシュボード</a>
+                            </li>
+                            <li>
+                                <a href="../tools.html">学習支援ツール</a>
+                            </li>
+                            <li>
+                                <a href="#">サポーターの皆様</a>
+                            </li>
+                            <li>
+                                <a href="#">広告掲載について</a>
+                            </li>
+                            <!-- 後で追加します -->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="breadcrumb">
+                    <ol>
+                        <li>
+                            <a href="./index.html">ホーム</a>
+                        </li>
+                        <li>
+                            <span>ログイン</span>
+                        </li>
+                    </ol>
+                </div>
+                <div class="main" id="auth-container">
+                    <h1 class="headingPrimary">
+                        <strong>ログイン</strong>
+                    </h1>
+                    <!-- 後でレスポンシブに対応させます -->
+                    <div>
+                        <div>
+                            <p>一部ツールの利用には会員登録が必要です。『<a href="#" class>新規会員登録はこちら（未実装）</a>』</p>
+                        </div>
+                        <form id="login-form">
+                            <div class="box-form-wrap">
+                                <div class="box-form">
+                                    <div class="input-head">
+                                        <span>ユーザーID</span>
+                                        <i class="required">必須</i>
+                                    </div>
+                                    <input type="email" id="email" name="email" class="input type3" placeholder="メールアドレス">
+                                </div>
+                                <div class="box-form">
+                                    <div class="input-head">
+                                        <span>パスワード</span>
+                                        <i class="required">必須</i>
+                                    </div>
+                                    <input type="password" id="password" name="password" class="input type3" placeholder="パスワード">
+                                </div>
+                            </div>
+                            <div class="ta-c">
+                                <button class="button darkblue" type="button" onclick="login()">ログイン</button>
+                            </div>
+                        </form>
+                        <div>
+                            <!-- 後で書きます -->
+                            <div class="frame-darkblue">
+                                <div>
+                                    <h2 class="headingThirdly">
+                                        <span>ログインできない方</span>
+                                    </h2>
+                                    <ul class="textList">
+                                        <li>
+                                            <span>ご入力いただいたパスワードが誤っている可能性があります。</span>
+                                        </li>
+                                        <li>
+                                            <span>ご入力いただいたユーザーIDが誤っている可能性があります。<br>ユーザーIDが不明な場合は、大変お手数をおかけいたしますが《<a href="#">お問い合わせフォーム（未実装）</a>》または、「サイト管理者」に直接ご確認ください。</span>
+                                        </li>
+                                        <li>
+                                            <span>パスワードは初期状態で学籍番号（英字は大文字）が割り振られています。</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ログイン中表示 -->
+                <div class="main" id="user-container">
+                    <h1 class="headingPrimary">
+                        <strong>ユーザー情報</strong>
+                    </h1>
+                    <p id="user-info"></p>
+                    <div class="ta-c">
+                        <button class="button darkblue" type="button" onclick="logout()">ログアウト</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer>
+            <div class="wrap">
+                <ul class="footer-corporate-link">
+                    <li class="footer-logos">
+                        <div>
+                            <a href="#">
+                                <img src="./img/学習支援ツール_logo3.png" alt="学習支援ツール">
+                                <div class="footer-logo-powerd">
+                                    powerd by
+                                    <img src="./img/AS-Tools_logo.png" alt="AS-Tools">
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <!-- 拡張時のため一応 -->
+                        </div>
+                    </li>
+                    <li class="site-maps">
+                        <a href="#" class="title">サイトマップ</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="arrow">
+                                    ホーム
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    学習支援ツール
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    FAQ（使い方ガイド）
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    サポーターの皆様
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="title blank">
+                            運営情報
+                            <i></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="#" class="arrow">
+                                    このサイトについて
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    利用規約
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    プライバシーポリシー
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    不具合報告
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="arrow">
+                                    お問い合わせ
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sponsored">
+                        <a href="#" class="title blank">
+                            Sponsored AD
+                            <i></i>
+                        </a>
+                        <div class="sponsored-ad">
+                            <div class="sponsored-ad-container">
+                                <div class="sponsored-ad-detail">
+                                    <a class="sponsored-ad-detail-item" href="https://gakuen.idolmaster-official.jp/">
+                                        <div class="sponsored-ad-detail-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/icon_app.png" alt="icon_app">
+                                        </div>
+                                    </a>
+                                    <a class="sponsored-ad-detail-item" href="https://gakuen-label.idolmaster-official.jp/">
+                                        <div class="sponsored-ad-detail-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/logo_color_w.png" alt="logo_color_w">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="sponsored-ad-store">
+                                    <a class="sponsored-ad-store-item" href="https://apps.apple.com/jp/app/id6446659989?mt=8">
+                                        <div class="sponsored-ad-store-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/btn_store_apple_open.png" alt="apple">
+                                        </div>
+                                    </a>
+                                    <a class="sponsored-ad-store-item" href="https://play.google.com/store/apps/details?id=com.bandainamcoent.idolmaster_gakuen">
+                                        <div class="sponsored-ad-store-image">
+                                            <img src="https://gakuen.idolmaster-official.jp/assets/img/common/btn_store_google_open.png" alt="google">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <p class="copyright">©2024 Academic-Support-Tools（学習支援ツール）</p>
+        </footer>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+    <script>
+        // Firebase構成情報
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhfFiNXhqB5Lko49xQD6SonIJf_f5Wh0Q",
+            authDomain: "academic-experiments-project.firebaseapp.com",
+            projectId: "academic-experiments-project",
+            storageBucket: "academic-experiments-project.firebasestorage.app",
+            messagingSenderId: "479824505322",
+            appId: "1:479824505322:web:c42a6734dcac994697aa93",
+        };
+
+        // Firebase初期化
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // ログイン処理
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert("ログイン成功: " + userCredential.user.email);
+                    showUserUI(userCredential.user);
+                    // ログイン成功後にexperiment.htmlへ遷移
+                    window.location.href = "./experiment.html";
+                })
+                .catch((error) => {
+                    alert("エラー: " + error.message);
+                });
+        }
+
+        // ログアウト処理
+        function logout() {
+            auth.signOut().then(() => {
+                alert("ログアウトしました");
+                showAuthUI();
+            });
+        }
+
+        // ログイン状態の監視
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                showUserUI(user);
+            } else {
+                showAuthUI();
+            }
+        });
+
+        // ユーザーがログインしているときのUIを表示
+        function showUserUI(user) {
+            document.getElementById("auth-container").style.display = "none";
+            document.getElementById("user-container").style.display = "block";
+
+            const email = user.email;
+            const emailFirst7Chars = email.substring(0, 7); // 先頭7文字を抽出
+            document.getElementById("user-info").innerHTML = `ステータス: ログイン中 <br> 学籍番号: ${emailFirst7Chars.toUpperCase()} <br> メールアドレス: ${user.email}`;
+            document.getElementById("user-login").textContent = `ログイン中: ${emailFirst7Chars.toUpperCase()}`;
+        }
+
+        // ユーザーがログインしていないときのUIを表示
+        function showAuthUI() {
+            document.getElementById("auth-container").style.display = "block";
+            document.getElementById("user-container").style.display = "none";
+            document.getElementById("user-login").textContent = `ログイン`;
+        }
+    </script>
+</body>
+</html>

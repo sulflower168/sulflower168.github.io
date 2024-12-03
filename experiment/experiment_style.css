@@ -1,0 +1,477 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100vh;
+}
+
+/* 共通 */
+a, button {
+    cursor: pointer;
+    color: inherit;
+    transition-property: opacity, transform;
+    transition-duration: .5s;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+a {
+    color: #000;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+/* ホバー関連 */
+.header-logo img:hover,
+.primary_header a:hover {
+    opacity:0.5;
+	transition:0.25s;
+}
+
+/* ヘッダー */
+#header {
+    position: relative;
+    padding-bottom: 86px;
+}
+
+header {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* 不具合が発生したら直します */
+    z-index: 1000;
+    background: hsla(0, 0%, 100%, .95);
+}
+
+header .wrap {
+    display: flex;
+    align-items: center;
+}
+
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-logo {
+    display: inline-block;
+    padding: 14px 0 15px;
+}
+
+.header-logo img {
+    height: 4em;
+    width: auto;
+    vertical-align: bottom;
+}
+
+/* メイン */
+/* ナビゲーション */
+.lower-nav {
+    background: #b9dff2;
+    border-bottom: 1px solid #ddd;
+}
+
+.lower-nav ul {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.lower-nav ul>li>a {
+    position: relative;
+    display: block;
+    height: 43px;
+    padding: 15px 20px 15px;
+    line-height: 1em;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.lower-nav ul>li>a:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 23px;
+    top: 11px;
+    right: 0;
+    background: #f8f9fb;
+}
+
+/* primary_header */
+.primary_header {
+    padding: 9px 0;
+    background: #333;
+}
+
+.primary_header>ol{
+    max-width: 1200px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.primary_header>ol>li {
+    position: relative;
+    font-size: 0.8rem;
+    line-height: 1.833em;
+    margin-right: 5px;
+    display: block;
+    font-size: 14px;
+    color: #ADB5BB;
+}
+
+.primary_header>ol>li>a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #ADB5BB;
+}
+
+.primary_header>ol>li>a:after {
+    position: relative;
+    content: ">";
+    padding-left: 5px;
+}
+
+@media screen and (min-width: 1001px) {
+    main .menu-user {
+        top: -39px;
+    }
+}
+
+main .menu-user {
+    position: absolute;
+    right: 0;
+    top: -26px;
+    display: flex;
+    width: 20%;
+    height: 74px;
+    align-items: center;
+    font-size: 11px;
+}
+
+.menu-user li a {
+    color: #ADB5BB;
+}
+
+/* メインコンテンツ */
+.contents {
+    background-color: white;
+}
+
+/* 問題画面共通 */
+/* 共通 */
+
+/* ヘッダー */
+.head1 {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 40px;
+    width: 100%;
+    max-width: 100%;
+    background-color: rgb(245, 245, 249);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px 1px;
+    z-index: 1;
+}
+
+.head2 {
+    display: flex;
+    flex-direction: column;
+    width: 1080px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 6px 0px;
+}
+
+.head3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 12px;
+}
+
+/* 進行度合い円グラフ */
+.pie-chart-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(#f5f5f9 55%, transparent 55%), conic-gradient(#0072f0 20%, #E1E1E5 20% 100%);
+    font-size: 0.6em;
+    color: #333333;
+}
+
+/* メイン */
+main {
+    background-color: #f5f5f5;
+}
+
+.main-contents {
+    display: flex;
+    flex-direction: column;
+    height: calc(var(--vh, 1vh)* 100);
+    width: 1080px;
+    max-width: 100%;
+    margin: 60px auto 0px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+}
+
+.question-box {
+    padding: 16px;
+}
+
+.question-box-info {
+    line-height: 2;
+    color: #333333;
+}
+
+.question-option {
+    padding: 20px;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.question-options {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.question-options li {
+    padding: 8px 12px 8px 20px;    
+    width: calc(25% - 18px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+
+    font-size: 0.85em;
+    color: #0060dd;
+    background-color: #fff;
+    position: relative;
+    min-height: 14px;
+    
+    margin: 4px;
+    border-radius: 2px;
+    white-space: normal;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #0060dd;
+    border-image: initial;
+}
+
+.section p{
+    padding-right: 16px;
+    margin-left: 16px;
+}
+
+/* 正解・不正解表示 */
+#result-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    width: 100%; /* 画像の幅（調整可能） */
+    max-width: 300px;
+    z-index: 5; /* 背景より上、ボタンより下 */
+    opacity: 0.8; /* 透過度 */
+    pointer-events: none; /* 画像がクリックを邪魔しないようにする */
+}
+
+/* フッター */
+/* footer */
+.footer1 {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: auto;
+    right: auto;
+    bottom: 0px;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px 1px;
+    background-color: rgb(255, 255, 255);
+}
+
+/* ボタン */
+.button-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.button-area .button {
+    margin: 0 14px;
+}
+
+.button {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 48px;
+    max-width: 340px;
+    background: #FFFF;
+    border: 1px solid #104b73;
+    border-radius: 24px;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #104b73;
+    line-height: 48px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.button:hover {
+    color: #FFFF;
+    font-weight: 2;
+    background-color: #104b73;
+}
+
+/* copyright */
+footer .copyright {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #fff;
+    text-align: center;
+    background: #104b73;
+    padding: 10px 10px;
+}
+
+/* ラジオボタン */
+.question-options {
+    border: none;
+}
+
+.question-options label {
+    min-width: calc(25% - 18px);
+    display: flex;
+    align-items: center;
+    gap: 0 .5em;
+    position: relative;
+    max-width: 200px;
+    margin-bottom: .4em;
+    padding: .5em .7em;
+    border: 1px solid #2589d0;
+    border-radius: 3px;
+    background-color: #2589d026;
+    cursor: pointer;
+}
+
+.question-options label:has(:checked) {
+    background-color: #2589d0;
+    color: #fff;
+}
+
+.question-options label::before {
+    width: 14px;
+    height: 14px;
+    border-radius: 1px;
+    background-color: #fff;
+    content: '';
+}
+
+.question-options label:has(:checked)::after {
+    position: absolute;
+    top: 14px;
+    left: 15px;
+    transform: rotate(45deg);
+    width: 4px;
+    height: 8px;
+    border: solid #2589d0;
+    border-width: 0 2px 2px 0;
+    content: '';
+}
+
+.question-options input {
+    display: none;
+}
+
+/* 結果を表示 */
+.result {
+    padding: 16px;
+}
+
+.save-results {
+    display: flex;
+    align-items: center;
+    gap: 0 .5em;
+    position: relative;
+    max-width: 200px;
+    margin-bottom: .4em;
+    margin-top: 12px;
+    padding: .5em .7em;
+    border: 1px solid #2589d0;
+    border-radius: 3px;
+    background-color: #2589d026;
+    cursor: pointer;
+}
+
+.save-results:hover {
+    color: #FFFF;
+    font-weight: 2;
+    background-color: #2589d0;
+}
+
+/* 音声で回答するボタン */
+.ask-questions-button {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 48px;
+    max-width: 340px;
+    background: #FFFF;
+    border: 1px solid #fbcf30;
+    border-radius: 24px;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #313131;
+    line-height: 48px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.ask-questions-button:hover {
+    color: #313131;
+    font-weight: bold;
+    background-color: #fbcf30;
+    border: 1px solid #fbcf30;
+}
