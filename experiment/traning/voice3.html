@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>令和6年問題 | 学習支援ツール</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../experiment_style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="contents">
+            <main>
+                <div class="primary_header">
+                    <ol>
+                        <li>
+                            <a href="../../../index.html">ホーム</a>
+                        </li>
+                        <li>
+                            <a href="../../../tools.html">学習支援ツール</a>
+                        </li>
+                        <li>
+                            <a href="../experiment.html">学習定着実験</a>
+                        </li>
+                        <li>
+                            <span>問題セット1（発話形式）</span>
+                        </li>
+                    </ol>
+                    <ul class="menu-user">
+                        <li>
+                            <a href="../experiment_login.html" id="user-login"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="head1">
+                    <div class="head2">
+                        <div class="head3">
+                            <div class="pie-chart-2" style="background-image: radial-gradient(#f5f5f9 55%, transparent 55%), conic-gradient(#0072f0 30%, #E1E1E5 30% 100%);">3/10</div>
+                            <div>中断</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-contents">
+                    <div class="test-wrap test">
+                        <div>
+                            <section class="section box">
+                                <div class="question-box">
+                                    <div class="question-box-info">
+                                        <!-- 音声ファイル -->
+                                        <audio src="../audio/R06004.wav" autoplay></audio>
+                                        <p id="question">従来の金融情報システムは堅ろう性が高い一方，柔軟性に欠け，モバイル技術などの情報革新に追従したサービスの迅速な提供が難しかった。これを踏まえて，インターネット関連技術の取込みやそれらを活用するベンチャー企業と組むなどして，新たな価値や革新的なサービスを提供していく潮流を表す用語として，最も適切なものはどれか。</p>
+                                        <!-- 再生・停止ボタン -->
+                                        <a href="#" id="toggleButton"><!--再生--></a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="question-option" style="height: 141px;">
+                                    <div class="question-options">
+                                        <li><p>オムニチャネル</p></li>
+                                        <li><p>フィンテック</p></li>
+                                        <li><p>ブロックチェーン</p></li>
+                                        <li><p>ワントゥワンマーケティング</p></li>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img id="result-img" src="" alt="">
+                                </div>
+                                <p id="result">音声入力の結果: <span id="userInput">-</span></p>
+                                <p id="feedback">-</p>
+                                <div class="button-area next-question">
+                                    <button onclick="startRecognition()" class="ask-questions-button">音声で回答する</button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer1">
+            <div class="footer2">
+                <div class="button-area">
+                    <a href="./voice2.html" class="button">前の問題へ</a>
+                    <a href="./voice4.html" class="button">次の問題へ</a>
+                </div>
+                <p class="copyright">©2024 Academic-Support-Tools（学習支援ツール）</p>
+                </div>
+        </footer>
+    </div>
+    <!-- スクリプトの読み込み -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+    <script src="../../js/userState.js"></script>
+
+    <script>
+        // 正解の選択肢
+        const correctAnswer = "フィンテック";
+
+        // 4つの選択肢
+        const options = [
+            "オムニチャネル",
+            "フィンテック",
+            "ブロックチェーン",
+            "ワントゥワンマーケティング"
+        ];
+    </script>
+    <script src="../../js/Isose.v.a0.2.js"></script>
+</body>
+</html>
